@@ -2,12 +2,11 @@
  * Class that represents a type of product.
  */
 public class Product {
-    private String type; // The type of product (aka the product's name)
+    private final String type; // The type of product (aka the product's name)
     private int quantity; // The quantity of this product in factory's storage
-    private double value; // The value of this product, for use when selling product
-
-    private Material[] reqMaterials; // Array of materials required to produce the product
-    private int[] reqMatQuantities; // Array of amounts required for each material in reqMaterials
+    private final double value; // The value of this product, for use when selling product
+    private final Material[] reqMaterials; // Array of materials required to produce the product
+    private final int[] reqMatQuantities; // Array of amounts required for each material in reqMaterials
 
     /**
      * Constructor for the Product class.

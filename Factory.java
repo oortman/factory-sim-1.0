@@ -5,8 +5,8 @@ import java.util.ArrayList;
  */
 public class Factory {
     private double cash; // Cash held in the factory
-    private final ArrayList<Material> materialStorage; // ArrayList that stores the material types in sim
-    private final ArrayList<Product> productStorage; // ArrayList that stores the product types in sim
+    protected final ArrayList<Material> materialStorage; // ArrayList that stores the material types
+    protected final ArrayList<Product> productStorage; // ArrayList that stores the product types
 
     /**
      * Constructor for Factory class.
@@ -44,7 +44,44 @@ public class Factory {
      * @param amountToProduce - the amount of specified product to produce
      */
     public void makeProduct(Product product, int amountToProduce) {
+        if (hasRequiredMats(product)) {
+            product.addProducts(amountToProduce);
+        } else {
+            System.out.println("You don't have the required materials!");
+        }
+    }
 
+    /**
+     * Checks if there are enough materials of each required type in storage to produce the
+     * specified product.
+     *
+     * @param product - the product to check the requirements for production
+     * @return true if there are enough materials of each required type in storage; false otherwise
+     */
+    private boolean hasRequiredMats(Product product) {
+        Material[] reqMats = product.getReqMats();
+        int[] reqMatQuantities = product.getReqMatQuantities();
+
+        for (int i = 0; i < reqMats.length; i++) {
+            if (reqMats[i].getQuantity() <= reqMatQuantities[i]) {
+                return false;
+            }
+        }
+
+        useMaterials(reqMats, reqMatQuantities);
+        return true;
+    }
+
+    /**
+     * Uses (removes) materials required for making a product.
+     *
+     * @param reqMats - materials required for making a product
+     * @param reqMatQuantities - amount of each material required for making a product
+     */
+    private void useMaterials(Material[] reqMats, int[] reqMatQuantities) {
+        for (int i = 0; i < reqMats.length; i++) {
+            reqMats[i].removeMats(reqMatQuantities[i]);
+        }
     }
 
     /**
