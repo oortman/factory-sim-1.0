@@ -98,4 +98,106 @@ public class Factory {
             System.out.println("You don't have enough product!");
         }
     }
+
+    /**
+     * Getter for factory's cash.
+     *
+     * @return the amount of cash that this factory has
+     */
+    public double getCash() {
+        return cash;
+    }
+
+    /**
+     * Prints the materials in this factory along with their quantities in storage.
+     */
+    public void printMatsInStorage() {
+        System.out.println("Materials in Storage");
+        for (Material material : materialStorage) {
+            System.out.printf("\t%s: %d\n", material.getType(), material.getQuantity());
+        }
+    }
+
+    /**
+     * Prints the products in this factory along with their quantities in storage.
+     */
+    public void printProdsInStorage() {
+        System.out.println("Products in Storage");
+        for (Product product : productStorage) {
+            System.out.printf("\t%s: %d\n", product.getType(), product.getQuantity());
+        }
+    }
+
+    /**
+     * Prints the materials in this factory along with their purchase prices.
+     */
+    public void printMatPrices() {
+        System.out.println("Material Catalog");
+        for (Material material : materialStorage) {
+            System.out.printf("\t%s: $%f\n", material.getType(), material.getPrice());
+        }
+    }
+
+    /**
+     * Prints the products in this factory along with their sale values.
+     */
+    public void printProdValues() {
+        System.out.println("Product Catalog");
+        for (Product product : productStorage) {
+            System.out.printf("\t%s: $%f\n", product.getType(), product.getValue());
+        }
+    }
+
+    /**
+     * Converts the user-inputted string to its corresponding material (if material exists).
+     *
+     * @param materialString user-inputted string that represents a material type
+     * @return the material that's type matches the materialString; null if no material exists for
+     * that type
+     */
+    public Material toMaterial(String materialString) {
+        for (Material material : materialStorage) {
+            if (material.getType().equalsIgnoreCase(materialString)) {
+                return material;
+            }
+        }
+
+        System.out.println("Invalid material!");
+        return null;
+    }
+
+    /**
+     * Converts the user-inputted string to its corresponding product (if product exists).
+     *
+     * @param productString user-inputted string that represents a product type
+     * @return the product that's type matches the productString; null if no product exists for
+     * that type
+     */
+    public Product toProduct(String productString) {
+        for (Product product : productStorage) {
+            if (product.getType().equalsIgnoreCase(productString)) {
+                return product;
+            }
+        }
+
+        System.out.println("Invalid product!");
+        return null;
+    }
+
+    /**
+     * Prints a list of products that can be made in this factory and their required materials and
+     * amounts of each material required.
+     */
+    public void printProdReqs() {
+        System.out.println("Required Materials to Produce Each Product");
+        for (int i = 0; i < productStorage.size(); i++) {
+            System.out.println(productStorage.get(i).getType());
+            Material[] reqMats = productStorage.get(i).getReqMats().clone();
+            int[] reqMatQuantities = productStorage.get(i).getReqMatQuantities().clone();
+
+            for (int j = 0; j < reqMats.length; j++) {
+                System.out.printf("\t%s: %d\n", reqMats[j].getType(), reqMatQuantities[j]);
+            }
+        }
+    }
 }
