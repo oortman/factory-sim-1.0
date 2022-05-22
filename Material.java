@@ -3,15 +3,15 @@
  */
 public class Material {
     private final String type; // The type of material (aka the material's name)
-    private int quantity; // Quantity of the material held in factory's storage
     private final double price; // The price of material used at material purchase
+    private int quantity; // Quantity of the material held in factory's storage
 
     /**
      * Constructor for the Material class.
      *
-     * @param materialType - the type of material (name)
+     * @param materialType    - the type of material (name)
      * @param initialQuantity - the initial quantity for the material in Factory storage
-     * @param price - the price of the material, for use in material purchasing
+     * @param price           - the price of the material, for use in material purchasing
      */
     public Material(String materialType, int initialQuantity, double price) {
         this.type = materialType;

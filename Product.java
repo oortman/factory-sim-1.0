@@ -3,18 +3,18 @@
  */
 public class Product {
     private final String type; // The type of product (aka the product's name)
-    private int quantity; // The quantity of this product in factory's storage
     private final double value; // The value of this product, for use when selling product
     private final Material[] reqMaterials; // Array of materials required to produce the product
     private final int[] reqMatQuantities; // Array of amounts required for each material in reqMaterials
+    private int quantity; // The quantity of this product in factory's storage
 
     /**
      * Constructor for the Product class.
      *
-     * @param productType - the type of product (name)
-     * @param initialQuantity - the initial quantity for the product in Factory storage
-     * @param value - the value of the product, for use in product sale
-     * @param reqMaterials - array of materials required to produce the product
+     * @param productType      - the type of product (name)
+     * @param initialQuantity  - the initial quantity for the product in Factory storage
+     * @param value            - the value of the product, for use in product sale
+     * @param reqMaterials     - array of materials required to produce the product
      * @param reqMatQuantities - array of amounts required for each material in reqMaterials
      */
     public Product(String productType, int initialQuantity, double value, Material[] reqMaterials,

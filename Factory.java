@@ -4,16 +4,16 @@ import java.util.ArrayList;
  * Class that represents a factory to be used in the simulator.
  */
 public class Factory {
-    private double cash; // Cash held in the factory
     protected final ArrayList<Material> materialStorage; // ArrayList that stores the material types
     protected final ArrayList<Product> productStorage; // ArrayList that stores the product types
+    private double cash; // Cash held in the factory
 
     /**
      * Constructor for Factory class.
      *
-     * @param startingCash - cash for the Factory to start with on creation
+     * @param startingCash    - cash for the Factory to start with on creation
      * @param materialStorage - ArrayList of Materials
-     * @param productStorage - ArrayList of Products
+     * @param productStorage  - ArrayList of Products
      */
     public Factory(double startingCash, ArrayList<Material> materialStorage,
                    ArrayList<Product> productStorage) {
@@ -25,7 +25,7 @@ public class Factory {
     /**
      * Purchase an amount of the specified material, if the Factory has enough cash.
      *
-     * @param material - Material to buy
+     * @param material    - Material to buy
      * @param amountToBuy - amount of the specified material to purchase
      */
     public void buyMaterial(Material material, int amountToBuy) {
@@ -40,11 +40,12 @@ public class Factory {
     /**
      * Produce an amount of the specified product, if required materials are available in storage.
      *
-     * @param product - the Product to produce
+     * @param product         - the Product to produce
      * @param amountToProduce - the amount of specified product to produce
      */
     public void makeProduct(Product product, int amountToProduce) {
-        if (hasRequiredMats(product)) {
+        if (hasRequiredMats(product, amountToProduce)) {
+            useMaterials(product, amountToProduce);
             product.addProducts(amountToProduce);
         } else {
             System.out.println("You don't have the required materials!");
@@ -56,38 +57,38 @@ public class Factory {
      * specified product.
      *
      * @param product - the product to check the requirements for production
+     * @param amount - the amount of specified product intended to be produced
      * @return true if there are enough materials of each required type in storage; false otherwise
      */
-    private boolean hasRequiredMats(Product product) {
+    private boolean hasRequiredMats(Product product, int amount) {
         Material[] reqMats = product.getReqMats();
         int[] reqMatQuantities = product.getReqMatQuantities();
 
         for (int i = 0; i < reqMats.length; i++) {
-            if (reqMats[i].getQuantity() <= reqMatQuantities[i]) {
+            if (reqMats[i].getQuantity() < reqMatQuantities[i] * amount) {
                 return false;
             }
         }
 
-        useMaterials(reqMats, reqMatQuantities);
         return true;
     }
 
     /**
-     * Uses (removes) materials required for making a product.
+     * Uses (removes) the materials from storage to make products.
      *
-     * @param reqMats - materials required for making a product
-     * @param reqMatQuantities - amount of each material required for making a product
+     * @param product - the product being produced
+     * @param amount - the number of products being produced
      */
-    private void useMaterials(Material[] reqMats, int[] reqMatQuantities) {
-        for (int i = 0; i < reqMats.length; i++) {
-            reqMats[i].removeMats(reqMatQuantities[i]);
+    private void useMaterials(Product product, int amount) {
+        for (int i = 0; i < product.getReqMats().length; i++) {
+            product.getReqMats()[i].removeMats(product.getReqMatQuantities()[i] * amount);
         }
     }
 
     /**
      * Sell an amount of the specified product, if stock in Factory storage allows.
      *
-     * @param product - the Product to sell from storage
+     * @param product      - the Product to sell from storage
      * @param amountToSell - the amount of specified product to sell
      */
     public void sellProduct(Product product, int amountToSell) {
@@ -113,6 +114,7 @@ public class Factory {
      */
     public void printMatsInStorage() {
         System.out.println("Materials in Storage");
+
         for (Material material : materialStorage) {
             System.out.printf("\t%s: %d\n", material.getType(), material.getQuantity());
         }
@@ -123,6 +125,7 @@ public class Factory {
      */
     public void printProdsInStorage() {
         System.out.println("Products in Storage");
+
         for (Product product : productStorage) {
             System.out.printf("\t%s: %d\n", product.getType(), product.getQuantity());
         }
@@ -132,7 +135,8 @@ public class Factory {
      * Prints the materials in this factory along with their purchase prices.
      */
     public void printMatPrices() {
-        System.out.println("Material Catalog");
+        System.out.println("\nMaterial Catalog");
+
         for (Material material : materialStorage) {
             System.out.printf("\t%s: $%f\n", material.getType(), material.getPrice());
         }
@@ -142,7 +146,8 @@ public class Factory {
      * Prints the products in this factory along with their sale values.
      */
     public void printProdValues() {
-        System.out.println("Product Catalog");
+        System.out.println("\nProduct Catalog");
+
         for (Product product : productStorage) {
             System.out.printf("\t%s: $%f\n", product.getType(), product.getValue());
         }
@@ -185,13 +190,15 @@ public class Factory {
     }
 
     /**
-     * Prints a list of products that can be made in this factory and their required materials and
+     * Prints a list of products that can be made in this factory, their required materials, and
      * amounts of each material required.
      */
     public void printProdReqs() {
-        System.out.println("Required Materials to Produce Each Product");
+        System.out.println("\nRequired Materials to Produce Each Product");
+
         for (int i = 0; i < productStorage.size(); i++) {
             System.out.println(productStorage.get(i).getType());
+
             Material[] reqMats = productStorage.get(i).getReqMats().clone();
             int[] reqMatQuantities = productStorage.get(i).getReqMatQuantities().clone();
 
