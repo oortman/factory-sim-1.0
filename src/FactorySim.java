@@ -1,5 +1,6 @@
+package src;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -72,14 +73,14 @@ public class FactorySim {
      * Prints the basic factory info and command options to the user.
      */
     private void printBasicInfo() {
-        System.out.println("\nYou have $" + factory.getCash());
+        System.out.printf("\nYou have $%.2f\n", factory.getCash());
         factory.printMatsInStorage();
         factory.printProdsInStorage();
         System.out.println("\nChoose an Action");
         System.out.println("1: Buy material" +
                 "\n2: Make product" +
                 "\n3: Sell product" +
-                "\n4: Exit FactorySim");
+                "\n4: Exit src.FactorySim");
     }
 
     /**
@@ -121,7 +122,7 @@ public class FactorySim {
                 }
                 break;
             case 4:
-                System.out.println("Thank you for using FactorySim!");
+                System.out.println("Thank you for using src.FactorySim!");
                 System.out.println("Exiting program...");
                 break;
             default:

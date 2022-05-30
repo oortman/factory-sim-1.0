@@ -1,3 +1,5 @@
+package src;
+
 import java.util.ArrayList;
 
 /**
@@ -9,9 +11,9 @@ public class Factory {
     private double cash; // Cash held in the factory
 
     /**
-     * Constructor for Factory class.
+     * Constructor for src.Factory class.
      *
-     * @param startingCash    - cash for the Factory to start with on creation
+     * @param startingCash    - cash for the src.Factory to start with on creation
      * @param materialStorage - ArrayList of Materials
      * @param productStorage  - ArrayList of Products
      */
@@ -23,9 +25,9 @@ public class Factory {
     }
 
     /**
-     * Purchase an amount of the specified material, if the Factory has enough cash.
+     * Purchase an amount of the specified material, if the src.Factory has enough cash.
      *
-     * @param material    - Material to buy
+     * @param material    - src.Material to buy
      * @param amountToBuy - amount of the specified material to purchase
      */
     public void buyMaterial(Material material, int amountToBuy) {
@@ -40,7 +42,7 @@ public class Factory {
     /**
      * Produce an amount of the specified product, if required materials are available in storage.
      *
-     * @param product         - the Product to produce
+     * @param product         - the src.Product to produce
      * @param amountToProduce - the amount of specified product to produce
      */
     public void makeProduct(Product product, int amountToProduce) {
@@ -86,9 +88,9 @@ public class Factory {
     }
 
     /**
-     * Sell an amount of the specified product, if stock in Factory storage allows.
+     * Sell an amount of the specified product, if stock in src.Factory storage allows.
      *
-     * @param product      - the Product to sell from storage
+     * @param product      - the src.Product to sell from storage
      * @param amountToSell - the amount of specified product to sell
      */
     public void sellProduct(Product product, int amountToSell) {
@@ -135,10 +137,10 @@ public class Factory {
      * Prints the materials in this factory along with their purchase prices.
      */
     public void printMatPrices() {
-        System.out.println("\nMaterial Catalog");
+        System.out.println("\nsrc.Material Catalog");
 
         for (Material material : materialStorage) {
-            System.out.printf("\t%s: $%f\n", material.getType(), material.getPrice());
+            System.out.printf("\t%s: $%.2f\n", material.getType(), material.getPrice());
         }
     }
 
@@ -146,10 +148,10 @@ public class Factory {
      * Prints the products in this factory along with their sale values.
      */
     public void printProdValues() {
-        System.out.println("\nProduct Catalog");
+        System.out.println("\nsrc.Product Catalog");
 
         for (Product product : productStorage) {
-            System.out.printf("\t%s: $%f\n", product.getType(), product.getValue());
+            System.out.printf("\t%s: $%.2f\n", product.getType(), product.getValue());
         }
     }
 
@@ -194,7 +196,7 @@ public class Factory {
      * amounts of each material required.
      */
     public void printProdReqs() {
-        System.out.println("\nRequired Materials to Produce Each Product");
+        System.out.println("\nRequired Materials to Produce Each src.Product");
 
         for (int i = 0; i < productStorage.size(); i++) {
             System.out.println(productStorage.get(i).getType());

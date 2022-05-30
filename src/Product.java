@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Class that represents a type of product.
  */
@@ -9,10 +11,10 @@ public class Product {
     private int quantity; // The quantity of this product in factory's storage
 
     /**
-     * Constructor for the Product class.
+     * Constructor for the src.Product class.
      *
      * @param productType      - the type of product (name)
-     * @param initialQuantity  - the initial quantity for the product in Factory storage
+     * @param initialQuantity  - the initial quantity for the product in src.Factory storage
      * @param value            - the value of the product, for use in product sale
      * @param reqMaterials     - array of materials required to produce the product
      * @param reqMatQuantities - array of amounts required for each material in reqMaterials
@@ -27,7 +29,7 @@ public class Product {
     }
 
     /**
-     * Adds specified amount of this Product to factory's storage.
+     * Adds specified amount of this src.Product to factory's storage.
      *
      * @param amountToAdd - amount of this product to add to storage
      */
@@ -36,7 +38,7 @@ public class Product {
     }
 
     /**
-     * Removes specified amount of this Product from factory's storage.
+     * Removes specified amount of this src.Product from factory's storage.
      *
      * @param amountToRemove - amount of this product to remove from storage
      */
@@ -45,7 +47,7 @@ public class Product {
     }
 
     /**
-     * Getter for Product type.
+     * Getter for src.Product type.
      *
      * @return the product's type
      */
@@ -54,7 +56,7 @@ public class Product {
     }
 
     /**
-     * Getter for Product quantity.
+     * Getter for src.Product quantity.
      *
      * @return the quantity of this product in storage
      */
@@ -63,7 +65,7 @@ public class Product {
     }
 
     /**
-     * Getter for Product value.
+     * Getter for src.Product value.
      *
      * @return the value of this product
      */
@@ -72,7 +74,7 @@ public class Product {
     }
 
     /**
-     * Getter for Product reqMaterials.
+     * Getter for src.Product reqMaterials.
      *
      * @return the array of materials required to produce this product
      */
@@ -81,7 +83,7 @@ public class Product {
     }
 
     /**
-     * Getter for Product reqMatQuantities.
+     * Getter for src.Product reqMatQuantities.
      *
      * @return the array of quantities of each material required to produce this product
      */

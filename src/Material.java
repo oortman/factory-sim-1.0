@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Class that represents a type of material to be purchased and/or used to produce Products.
  */
@@ -7,10 +9,10 @@ public class Material {
     private int quantity; // Quantity of the material held in factory's storage
 
     /**
-     * Constructor for the Material class.
+     * Constructor for the src.Material class.
      *
      * @param materialType    - the type of material (name)
-     * @param initialQuantity - the initial quantity for the material in Factory storage
+     * @param initialQuantity - the initial quantity for the material in src.Factory storage
      * @param price           - the price of the material, for use in material purchasing
      */
     public Material(String materialType, int initialQuantity, double price) {
@@ -20,7 +22,7 @@ public class Material {
     }
 
     /**
-     * Adds specified amount of this Material to factory's storage.
+     * Adds specified amount of this src.Material to factory's storage.
      *
      * @param amountToAdd - amount of this material to add to storage
      */
@@ -29,7 +31,7 @@ public class Material {
     }
 
     /**
-     * Removes specified amount of this Material from factory's storage.
+     * Removes specified amount of this src.Material from factory's storage.
      *
      * @param amountToRemove - amount of this material to remove from storage
      */
@@ -38,7 +40,7 @@ public class Material {
     }
 
     /**
-     * Getter for Material type.
+     * Getter for src.Material type.
      *
      * @return the material's type
      */
@@ -47,7 +49,7 @@ public class Material {
     }
 
     /**
-     * Getter for Material quantity.
+     * Getter for src.Material quantity.
      *
      * @return the quantity of this material in storage
      */
@@ -56,7 +58,7 @@ public class Material {
     }
 
     /**
-     * Getter for Material price.
+     * Getter for src.Material price.
      *
      * @return the price of this material
      */
